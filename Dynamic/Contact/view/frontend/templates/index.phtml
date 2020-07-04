@@ -1,117 +1,19 @@
-
-<div class="block block-help-contactforms">
-    <div class="block-title">
-        <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Please specify your support request')) ?></strong>
-    </div>
-    <div class="block-content" aria-labelledby="block-help-contactforms">
-        <form class="form form-login"
-              action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
-              method="post"
-              enctype="multipart/form-data"
-              id="block-help-contactforms-form"
-              data-mage-init='{"validation":{}}'>
-            <?= $block->getBlockHtml('formkey') ?>
-            <fieldset class="fieldset first-step" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-                <div class="field email">
-                    <label class="label" for="subject"><span><?= $block->escapeHtml(__('Subject')) ?></span></label>
-                    <div  class="control" >
-                        <select name="subject" class="select" id="subject">
-                            <option value="cancel"><?= $block->escapeHtml(__('Cancel')) ?></option>
-                            <option value="my_order"><?= $block->escapeHtml(__('Where is my order')) ?></option>
-                            <option value="wrong"><?= $block->escapeHtml(__('Something wrong')) ?></option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field password required">
-                    <div class="actions-toolbar">
-                        <div class="primary"><button type="button" class="action primary" name="next" id="step2"><span><?= $block->escapeHtml(__('Next')) ?></span></button></div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <fieldset class="fieldset second-step" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-                <div class="change-subject"><?= $block->escapeHtmlAttr(__('Change')) ?></div>
-                <div class="field customer_name required">
-                    <label class="label" for="customer_name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
-                    <div  class="control" >
-                        <input name="customer_name" type="text" class="input-text"
-                        id="Name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>" data-validate="{required:true}">
-                    </div>
-                </div>
-                <div class="field email required">
-                    <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
-                    <div  class="control" >
-                        <input name="email" type="email" class="input-text"
-                               id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" data-validate="{required:true, 'validate-email':true}">
-                    </div>
-                </div>
-                <div class="field order_number required">
-                    <label class="label" for="order_number"><span><?= $block->escapeHtml(__('Order number')) ?></span></label>
-                    <div  class="control" >
-                        <input name="order_number" type="text" class="input-text"
-                               id="order_number" title="<?= $block->escapeHtmlAttr(__('Order number')) ?>" data-validate="{required:true}">
-                    </div>
-                </div>
-                <div class="field image">
-                    <label class="label" for="image"><span><?= $block->escapeHtml(__('Image')) ?></span></label>
-                    <div  class="control" >
-                        <input name="image" class="input-text" type="file"
-                               id="image" title="<?= $block->escapeHtmlAttr(__('Image')) ?>">
-                    </div>
-                </div>
-                <div class="field customer_name required">
-                    <label class="label" for="customer_name"><span><?= $block->escapeHtml(__('Description')) ?></span></label>
-                    <div  class="control" >
-                        <textarea name="description" class="input-text"
-                                  id="description" title="<?= $block->escapeHtmlAttr(__('Description')) ?>" data-validate="{required:true}"></textarea>
-                    </div>
-                </div>
-                <div class="field password required">
-                    <div class="actions-toolbar">
-                        <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span><?= $block->escapeHtml(__('Submit')) ?></span></button></div>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+<div id="zendesk-form" data-bind="scope: 'zendeskForm'">
+    <!-- ko template: getTemplate() --><!--/ko-->
 </div>
-<script type="text/javascript">
-    require([
-        'jquery'
-    ], function($){
-
-        $('.first-step').css({opacity: 1});
-        $('.second-step').css({opacity: 0});
-        $('.second-step .field.image').hide();
-        $('.second-step').hide();
-        $('.first-step').show();
-        $('#step2').on('click',function (e) {
-            e.preventDefault();
-            var subject = $( ".first-step #subject option:selected" ).val();
-            if(subject == 'wrong') {
-                $('.second-step .field.image').show();
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "zendeskForm": {
+                        "component": "Dynamic_Contact/js/form",
+                        "formUrl": "<?= /* @escapeNotVerified */ $block->getPostActionUrl() ?>",
+                        "formLoginUrl": "<?= /* @escapeNotVerified */ $block->getAjaxLoginActionUrl() ?>"
+                    }
+                }
             }
-            $( ".first-step" ).animate({
-                opacity: 0
-            }, 500, function() {
-                $('.first-step').hide();
-                $('.second-step').show();
-                $( ".second-step" ).animate({
-                    opacity: 1
-                }, 500);
-            });
-        });
-        $('.change-subject').on('click', function () {
-
-            $( ".second-step" ).animate({
-                opacity: 0
-            }, 500, function() {
-                $('.second-step').hide();
-                $('.first-step').show();
-                $( ".first-step" ).animate({
-                    opacity: 1
-                }, 500);
-            });
-        });
-    });
+        }
+    }
 </script>
+

@@ -16,7 +16,7 @@
         <column xsi:type="varchar" name="email" nullable="false" length="255" default="" comment="Email"/>
         <column xsi:type="varchar" name="order_number" nullable="false" length="255" default="" comment="Order number"/>
         <column xsi:type="varchar" name="image" nullable="true"  comment="Image"/>
-        <column xsi:type="text" name="description" nullable="false" default="" comment="Description"/>
+        <column xsi:type="text" name="description" nullable="false" comment="Description"/>
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
                 comment="Creation Time"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">

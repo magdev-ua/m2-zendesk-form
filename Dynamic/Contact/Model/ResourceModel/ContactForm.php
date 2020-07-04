@@ -1,12 +1,10 @@
 <?php
 
-
 namespace Dynamic\Contact\Model\ResourceModel;
-
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
-class Contactforms  extends AbstractDb
+class ContactForm  extends AbstractDb
 {
 
     protected function _construct()

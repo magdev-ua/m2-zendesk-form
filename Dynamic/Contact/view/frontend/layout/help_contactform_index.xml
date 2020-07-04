@@ -4,6 +4,6 @@
         <css src="Dynamic_Contact::css/core.css" />
     </head>
     <referenceContainer name="content">
-        <block class="Dynamic\Contact\Block\Index" name="help_contactforms_index" template="Dynamic_Contact::index.phtml" />
+        <block class="Dynamic\Contact\Block\Index" name="help_contact_form" template="Dynamic_Contact::index.phtml" />
     </referenceContainer>
 </page>

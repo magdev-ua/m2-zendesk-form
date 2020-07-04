@@ -1,18 +1,30 @@
 <?php
-namespace Dynamic\Contact\Block;
+declare(strict_types=1);
 
+namespace Dynamic\Contact\Block;
 
 use Magento\Framework\View\Element\Template;
 
-class Index extends \Magento\Framework\View\Element\Template
+class Index extends Template
 {
-    public function __construct(Template\Context $context, array $data = [])
-    {
+    /**
+     * @param Template\Context $context
+     * @param array $data
+     */
+    public function __construct(
+        Template\Context $context,
+        array $data = []
+    ) {
         parent::__construct($context, $data);
     }
 
-    public function getPostActionUrl()
+    public function getPostActionUrl() : string
     {
-        return $this->getUrl('help/contactforms/save');
+        return $this->getUrl('help/contactform/save');
+    }
+
+    public function getAjaxLoginActionUrl() : string
+    {
+        return $this->getUrl('customer/ajax/login');
     }
 }
